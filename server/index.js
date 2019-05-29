@@ -1,4 +1,5 @@
 const db = require('../db/index.js')
+const seeder = require('../db/gameSeeder.js')
 const express = require('express');  
 const app = express(); 
 
