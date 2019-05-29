@@ -6,6 +6,7 @@
   "scripts": {
     "express-start": "nodemon ./server/index.js",
     "webpack": "webpack --watch",
+    "seed" : "node ./db/gameSeeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "azucena martinez",
@@ -26,6 +27,7 @@
     "babel-preset-react": "^6.23.0",
     "css-loader": "^2.1.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "faker": "^4.1.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0",
     "path": "^0.12.7",
