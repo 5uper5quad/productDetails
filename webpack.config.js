@@ -1,7 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 module.exports = {
-  entry: path.resolve(__dirname, 'app'),
+  entry: path.resolve(__dirname, './client/app.jsx'),
   output: {
     path: __dirname + '/public',
     publicPath: '/',
@@ -13,11 +13,6 @@ module.exports = {
           test : /\.jsx?/,
           include : __dirname,
           loader : 'babel-loader',
-          query: {
-            presets: [
-              'react', 'es2015'
-            ]
-          }
         }
       ]
   }

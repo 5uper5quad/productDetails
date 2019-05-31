@@ -42,22 +42,3 @@ var seederFunction = () => {
 seederFunction();
 
 
-//wrap the for loop, randBoolean, insertMany  exit(), into one function
-//call it ()
-//package.json new seeding script path to gameSeeder.js
-//exit function mongoose.disconnect
-// console.log(seedArray)
-
-// 
-
-
-
-// var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-// var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-
-
-// Example:
-
-// console.log(faker.fake("{{name.lastName}}, {{name.firstName}} {{name.suffix}}"));
-// outputs: "Marks, Dean Sr."
-

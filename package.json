@@ -6,7 +6,7 @@
   "scripts": {
     "express-start": "nodemon ./server/index.js",
     "webpack": "webpack --watch",
-    "seed" : "node ./db/gameSeeder.js",
+    "seed": "node ./db/gameSeeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "azucena martinez",
@@ -21,6 +21,9 @@
     "react-dom": "^15.6.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^8.0.6",
     "babel-preset-es2015": "^6.22.0",
