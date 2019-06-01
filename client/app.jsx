@@ -1,12 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
-import Languages from './components/Languages.jsx'
-import Features from './components/Features.jsx'
-
-// import Styles from 'stylings.css'
-
-
+import { FaAmazonPay , FaApplePay } from 'react-icons/fa';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,50 +11,109 @@ class App extends React.Component {
     }
   }
 
-  
+
   componentDidMount() {
     
     $.get(`http://localhost:3009/games/1`, (data) => {
       var languageArray = []
       var featuresArray = []
       for(let key in data){
-        languageArray.push(key)
+        languageArray.push(` ${key}  `)
+        console.log("data[key]", data[key])
       for(let innerKey in data[key]){
-        featuresArray.push(innerKey)
+        featuresArray.push(`  ${innerKey}     `)
         console.log("innerKey",innerKey)
       }
       }
-      
-      
-      
-      console.log("languageArray", languageArray, "featuresArray " , featuresArray)
+
     this.setState({
        languages : languageArray.splice(0,5),
-       features: featuresArray.splice(0,5)
+       features: featuresArray.splice(0,3)
     })
 
   }) 
 }
- 
+
+
   render() {
     
     return (
       <div > 
-        <div>Available Languages and Features :</div>
-        <div>Language: {this.state.languages[0]}  Features {this.state.features[0]}</div>
-        <div>Language: {this.state.languages[1]}  Features {this.state.features[1]}</div>
-        <div>Language: {this.state.languages[2]}  Features {this.state.features[2]}</div>
-        <div>Language: {this.state.languages[3]}  Features {this.state.features[3]}</div>
-        <div>Language: {this.state.languages[4]}  Features {this.state.features[4]}</div>
-       
-
-        {/* <Languages game={this.state.languages} />
-        <Features features={this.state.features} />  */}
+        
+        <div style={divStyle}>Available Languages and Features :</div>
+        <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[0]}  
+          Features :
+           {this.state.features[0]}<span>&#10003;</span>
+           {this.state.features[1]}
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[1]}  
+          Features :
+           {this.state.features[0]}<span>&#10003;</span>
+           {this.state.features[1]}<span>&#10003;</span>
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[2]}  
+          Features :
+           {this.state.features[0]}
+           {this.state.features[1]}<span>&#10003;</span>
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[3]}  
+          Features :
+           {this.state.features[0]}<span>&#10003;</span>
+           {this.state.features[1]}
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[4]}  
+          Features :
+           {this.state.features[0]}<span>&#10003;</span>
+           {this.state.features[1]}
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <div style ={innerDivStyle}>
+          <b>Language :</b> 
+          {this.state.languages[5]}  
+          Features :
+           {this.state.features[0]}
+           {this.state.features[1]}<span>&#10003;</span>
+           {this.state.features[2]}<span>&#10003;</span>
+          </div>
+          <h4>Payment Options : <FaAmazonPay size ={60}/>  and  <FaApplePay size ={60}/></h4>
       </div>
    )
   }
 };
 
 
-
 ReactDOM.render(<App />, document.getElementById('app'))
+const innerDivStyle = {
+  padding: '20px',
+  color:'#8f98a0',
+  padding: '10px',
+  background: '#191b4dfa',
+  margin: 'auto',
+  border: 'solid',
+  hover:{
+    background: 'yellow'
+  }
+  
+}
+
+const divStyle = {
+  border: 'solid',
+  color: '#8f98a0',
+  height: '50px',
+  background: 'Navy'
+  
+}

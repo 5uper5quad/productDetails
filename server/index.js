@@ -14,14 +14,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-// app.get('/games', (req,res) => {
-//   LanguageFeatures.find({ } ,(err, result) => {
-//     if(err) console.log("i got an error", err)
-//     else{
-//       res.send(result);
-//     }
-//   })
-// })
+app.get('/games', (req,res) => {
+  LanguageFeatures.find({ } ,(err, result) => {
+    if(err) console.log("i got an error", err)
+    else{
+      res.send(result);
+    }
+  })
+})
 
 app.get('/games/:id', (req, res) => {
   LanguageFeatures.find({ id: req.params.id }, (err, result)=> {
