@@ -9907,23 +9907,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 82 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-
-
-var HelloWorld = function HelloWorld() {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-    className: "hello-world"
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Hello World"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "Welcome to my world"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "Welcome to my world"));
-};
-
-/* unused harmony default export */ var _unused_webpack_default_export = (HelloWorld);
-
-/***/ }),
+/* 82 */,
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20315,7 +20299,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_HelloWorld_jsx__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Languages_jsx__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Features_jsx__ = __webpack_require__(190);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20338,6 +20323,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+ // import Styles from 'stylings.css'
 
 var App =
 /*#__PURE__*/
@@ -20351,7 +20337,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
-      languages: null
+      languages: [],
+      features: []
     };
     return _this;
   }
@@ -20359,23 +20346,33 @@ function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      getAllGames();
-    }
-  }, {
-    key: "getAllGames",
-    value: function getAllGames() {
       var _this2 = this;
 
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default.a.get("http://localhost:3009/games", function (data) {
+      __WEBPACK_IMPORTED_MODULE_2_jquery___default.a.get("http://localhost:3009/games/1", function (data) {
+        var languageArray = [];
+        var featuresArray = [];
+
+        for (var key in data) {
+          languageArray.push(key);
+
+          for (var innerKey in data[key]) {
+            featuresArray.push(innerKey);
+            console.log("innerKey", innerKey);
+          }
+        }
+
+        console.log("languageArray", languageArray, "featuresArray ", featuresArray);
+
         _this2.setState({
-          languages: data
+          languages: languageArray.splice(0, 5),
+          features: featuresArray.splice(0, 5)
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, this.state.languages);
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Available Languages and Features :"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Language: ", this.state.languages[0], "  Features ", this.state.features[0]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Language: ", this.state.languages[1], "  Features ", this.state.features[1]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Language: ", this.state.languages[2], "  Features ", this.state.features[2]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Language: ", this.state.languages[3], "  Features ", this.state.features[3]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, "Language: ", this.state.languages[4], "  Features ", this.state.features[4]));
     }
   }]);
 
@@ -33673,6 +33670,46 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+var Languages = function Languages(props) {
+  console.log("props.game", props.game);
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, props.game.map(function (lan, index) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+      key: index
+    }, " language:", lan, " ");
+  }));
+};
+
+/* unused harmony default export */ var _unused_webpack_default_export = (Languages);
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+var Features = function Features(props) {
+  console.log("props.game", props.features);
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, props.features.map(function (fet, index) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+      key: index
+    }, " language:", fet, " ");
+  }));
+};
+
+/* unused harmony default export */ var _unused_webpack_default_export = (Features);
 
 /***/ })
 /******/ ]);
