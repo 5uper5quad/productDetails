@@ -14,23 +14,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.get('/games', (req,res) => {
-  LanguageFeatures.find({ } ,(err, result) => {
-    if(err) console.log("i got an error", err)
-    else{
-      res.send(result);
-    }
-  })
-})
+// app.get('/games', (req,res) => {
+//   LanguageFeatures.find({ } ,(err, result) => {
+//     if(err) console.log("i got an error", err)
+//     else{
+//       res.send(result);
+//     }
+//   })
+// })
 
-// app.get('/games/:id', (req, res) => {
-//   LanguageFeatures.find({ id: req.params.id }, (err, result)=> {
-//     if(err) console.log("++++index.js app.get ", err)
-//     res.send(result[0]);
-//   });
-// });
+app.get('/games/:id', (req, res) => {
+  LanguageFeatures.find({ id: req.params.id }, (err, result)=> {
+    if(err) console.log("++++index.js app.get ", err)
+    res.send(result[0]);
+  });
+});
 
-//app.get('language_features')
 
 app.listen(port, function(){
   console.log(`listening on port ${port}`);
