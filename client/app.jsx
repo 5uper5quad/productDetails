@@ -96,7 +96,7 @@ class App extends React.Component {
 };
 
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.querySelector('#root'))
 const innerDivStyle = {
   padding: '20px',
   color:'#8f98a0',
