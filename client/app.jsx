@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
 import { FaAmazonPay , FaApplePay } from 'react-icons/fa';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,24 @@ class App extends React.Component {
     
     return (
       <div > 
-        
+        {/* <h5 style= 'color: white '>Is this game relevant to you?</h5>
+  <h3 style ='color: white;border: solid'> Sign in to see reasons why you may or may not 
+   like this based on your games, 
+   friends, and curators you follow.
+  </h3> 
+    <button style= 'background:#7797b0;border-radius: 35px; margin: 20px; padding: 10px'>Sign-in </button><b>or</b>
+    <button style= 'background:#7797b0;border-radius: 35px; margin: 10px; padding: 10px'>Open in Steam</button> */}
+    
+        <h5 style = {divStyle}>Is this game relevant to you?</h5>
+        <h3 style = {divStyle}>Sign in to see reasons why you may or may not 
+            like this based on your games, 
+            friends, and curators you follow.
+        </h3>
+   <div style = {flexDiv}>
+      <button style={buttonStyle}>Sign-in </button>
+      <h3>or</h3>
+      <button style={buttonStyle}>Open in Steam </button>
+    </div>
         <div style={divStyle}>Available Languages and Features :</div>
         <div style ={innerDivStyle}>
           <b>Language :</b> 
@@ -109,6 +127,12 @@ const innerDivStyle = {
   }
   
 }
+const buttonStyle = {
+  background:'#7797b0',
+  borderRadius: '25px',
+   margin: '3px', 
+   padding: '5px'
+}
 
 const divStyle = {
   border: 'solid',
@@ -117,3 +141,10 @@ const divStyle = {
   background: 'Navy'
   
 }
+
+const flexDiv = {
+  display: 'flex',
+  'flexDirection': 'row',
+  'justifyContent': 'left'
+}
+
