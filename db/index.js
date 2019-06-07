@@ -17,29 +17,12 @@ var Schema = mongoose.Schema;
       Navajo:{ interface: Boolean, full_audio: Boolean, subtitles: Boolean},
       Mandarin:{ interface: Boolean, full_audio: Boolean, subtitles: Boolean}
       
-   }
- );
+    }
+  );
 
 
-  
- var LanguageFeatures = db.model('LanguageFeatures', languageFeatures);
- 
- 
- 
-//  let spQuery = SinglePlayer.findOne({ 'type' : 'singlePlayer'}, 'image title', function(err, spGame){
-//    if(err) return handleError(err);
-//    //would like to return: spGame.image and spGame.title here...
-//    return spGame ;
-//  })
- 
- 
 
-// comment out the helper functions. 
-//generate data, console.log it, add to database look at it using mongo shell commands.
-//start off with one Schema, find a way to auto-generate the documents
-// .save()  connect-save-disconnect 
-// use the mongo commands to see if it even worked.
-// google seeding script to add to package.json
+var LanguageFeatures = db.model('LanguageFeatures', languageFeatures);
 
 
 

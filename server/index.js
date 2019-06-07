@@ -1,4 +1,4 @@
-const LanguageFeatures = require('../db/index')
+const db = require('../db/index')
 const express = require('express');  
 const app = express(); 
 
@@ -14,19 +14,45 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.get('/games', (req,res) => {
-  LanguageFeatures.find({ } ,(err, result) => {
-    if(err) console.log("i got an error", err)
-    else{
-      res.send(result);
-    }
+//getall
+app.get('/productDetails', (req,res) => {
+  db.find({ } ,(err, data) => {
+    if(err) res.send(err);
+    else res.send(data);
   })
-})
+});
 
-app.get('/games/:id', (req, res) => {
-  LanguageFeatures.find({ id: req.params.id }, (err, result)=> {
-    if(err) console.log("++++index.js app.get ", err)
-    res.send(result[0]);
+//get at id
+app.get('/productDetails/:id', (req, res) => {
+  db.find(req.params.id, (err, data) => {
+    if(err) res.send(err);
+    res.send(data[0]); //<--data.rows eventually for postgres
+  });
+});
+
+//post at id
+app.post('/productDetails/:id', (req, res) => {
+  const product = req.body;
+  db.add(product, (err, data) => {
+    if(err) res.send(err);
+    else res.send(data);
+  });
+});
+
+//put at id
+app.put('/productDetails/:id', (req, res) => {
+  const product = req.body;
+  db.update(product, (err, data) => {
+    if (err) res.send(err);
+    else res.send(data);
+  });
+});
+
+//delete at id
+app.delete('/productDetails/:id', (req, res) => {
+  db.remove(req.params.id, (err, data) => {
+    if(err) res.send(err);
+    else res.send(data);
   });
 });
 

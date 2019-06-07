@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/meta-data');
 
- 
+
 
 
 var seedArray = [];
@@ -35,7 +35,7 @@ var seederFunction = () => {
   
   LanguageFeatures.insertMany(seedArray, function(err){
     if(err) return console.log(err)
-     exit()
+      exit()
   });
 }
 
