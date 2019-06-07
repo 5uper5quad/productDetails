@@ -6,7 +6,27 @@ const seed = () => {
   let count = 0;
   let test = {};
   var start = Date.now(); //start timer
-  test.entry = faker.lorem.sentence();
+  test.entry = count;
+  test.entry1 = { input: faker.random.boolean(),
+                  input: faker.random.boolean(),
+                  input: faker.random.boolean()
+                },
+  test.entry2 = { input: faker.random.boolean(),
+                  input: faker.random.boolean(),
+                  input: faker.random.boolean()
+                },
+  test.entry3 = { input: faker.random.boolean(),
+                  input: faker.random.boolean(),
+                  input: faker.random.boolean()
+                },
+  test.entry4 = { input: faker.random.boolean(),
+                  input: faker.random.boolean(),
+                  input: faker.random.boolean()
+                },
+  test.entry5 = { input: faker.random.boolean(),
+                  input: faker.random.boolean(),
+                  input: faker.random.boolean()
+                }
 
   while (count < 10000000) {
     let data = '';
