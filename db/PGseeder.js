@@ -12,7 +12,7 @@ const seed = () => {
     let data = '';
     let hundredThousand = 0;
     while (hundredThousand < 100000) {
-      data += JSON.stringify(test)`\t`;
+      data += JSON.stringify(test);
       count++;
       hundredThousand++;
     }
@@ -45,8 +45,6 @@ const seed = () => {
 //                     full_audio: faker.random.boolean(),
 //                     subtitles: faker.random.boolean(),
 //                   };
-
-
 
 seed();
 
