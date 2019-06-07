@@ -2,7 +2,18 @@ const faker = require('faker');
 const fs = require('fs');
 
 
-let count = 0;
+const seed = () => {
+  let count = 0;
+
+  while (count < 10) {
+      let data = '';
+      data += product;
+      count++;
+      fs.appendFileSync('./allTheData.tsv', data);
+  }
+  console.log(count);
+};
+
 const product = {};
 product.id = count;
 product.English = { interface: faker.random.boolean(), 
@@ -25,7 +36,8 @@ product.Mandarin = { interface: faker.random.boolean(),
                     full_audio: faker.random.boolean(),
                     subtitles: faker.random.boolean(),
                   };
-count++;
+
+seed();
 
 const testingThingy = () => {
   let thingy = 0;
