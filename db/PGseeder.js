@@ -30,13 +30,13 @@ const seed = () => {
 
   while (count < 10000000) {
     let data = '';
-    let hundredThousand = 0;
-    while (hundredThousand < 100000) {
-      data += JSON.stringify(test);
+    let tenThousand = 0;
+    while (tenThousand < 10000) {
+      data += test;
       count++;
-      hundredThousand++;
+      tenThousand++;
     }
-    fs.appendFileSync('./allTheData.tsv', data);
+    fs.appendFileSync('./allTheData.csv', data);
   }
   console.log(count);
   var millis = Date.now() - start;
