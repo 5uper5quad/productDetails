@@ -4,40 +4,39 @@ const fs = require('fs');
 
 const seed = () => {
   let count = 0;
-  let test = {};
+  let product = '';
   var start = Date.now(); //start timer
-  test.entry = count;
-  test.entry1 = { input: faker.random.boolean(),
-                  input: faker.random.boolean(),
-                  input: faker.random.boolean()
-                },
-  test.entry2 = { input: faker.random.boolean(),
-                  input: faker.random.boolean(),
-                  input: faker.random.boolean()
-                },
-  test.entry3 = { input: faker.random.boolean(),
-                  input: faker.random.boolean(),
-                  input: faker.random.boolean()
-                },
-  test.entry4 = { input: faker.random.boolean(),
-                  input: faker.random.boolean(),
-                  input: faker.random.boolean()
-                },
-  test.entry5 = { input: faker.random.boolean(),
-                  input: faker.random.boolean(),
-                  input: faker.random.boolean()
-                }
+  product += count + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean() + ',';
+  product += faker.random.boolean();
+  product += '\n';
+  // count++;
 
-  while (count < 10000000) {
-    let data = '';
-    let tenThousand = 0;
-    while (tenThousand < 10000) {
-      data += test;
-      count++;
-      tenThousand++;
-    }
-    fs.appendFileSync('./allTheData.csv', data);
-  }
+  let test = product;
+  fs.appendFileSync('./allTheData.csv', test);
+  // while (count < 100) {
+  //   let data = '';
+  //   let tenThousand = 0;
+  //   while (tenThousand < 10) {
+  //     data += JSON.stringify(product);
+  //     count++;
+  //     tenThousand++;
+  //   }
+  //   fs.appendFileSync('./allTheData.csv', data);
+  // }
   console.log(count);
   var millis = Date.now() - start;
   console.log('seconds elapsed = ' + Math.floor(millis / 1000));
