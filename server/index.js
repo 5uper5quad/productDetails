@@ -1,21 +1,22 @@
-const db = require('../db/index')
-const express = require('express');  
-const app = express(); 
-
-let port = 3009;
-
+const db = require('../db/PGdb.js');
+const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
 
-var path = __dirname + "./../public"
-console.log("path" ,path)
-app.use(express.static(__dirname + "./../public"))
+const app = express(); 
+const port = process.eng.PORT || 3009;
+
+app.use(express.static(path.join(__dirname, '../public')));
+app.use('/:id', express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors());
 
 
 //getall
-app.get('/productDetails', (req,res) => {
+app.get('/languageFeatures', (req,res) => {
   db.find({ } ,(err, data) => {
     if(err) res.send(err);
     else res.send(data);
@@ -23,7 +24,7 @@ app.get('/productDetails', (req,res) => {
 });
 
 //get at id
-app.get('/productDetails/:id', (req, res) => {
+app.get('/languageFeatures/:id', (req, res) => {
   db.find(req.params.id, (err, data) => {
     if(err) res.send(err);
     res.send(data[0]); //<--data.rows eventually for postgres
@@ -31,7 +32,7 @@ app.get('/productDetails/:id', (req, res) => {
 });
 
 //post at id
-app.post('/productDetails/:id', (req, res) => {
+app.post('/languageFeatures/:id', (req, res) => {
   const product = req.body;
   db.add(product, (err, data) => {
     if(err) res.send(err);
@@ -40,7 +41,7 @@ app.post('/productDetails/:id', (req, res) => {
 });
 
 //put at id
-app.put('/productDetails/:id', (req, res) => {
+app.put('/languageFeatures/:id', (req, res) => {
   const product = req.body;
   db.update(product, (err, data) => {
     if (err) res.send(err);
@@ -49,7 +50,7 @@ app.put('/productDetails/:id', (req, res) => {
 });
 
 //delete at id
-app.delete('/productDetails/:id', (req, res) => {
+app.delete('/languageFeatures/:id', (req, res) => {
   db.remove(req.params.id, (err, data) => {
     if(err) res.send(err);
     else res.send(data);
@@ -57,6 +58,8 @@ app.delete('/productDetails/:id', (req, res) => {
 });
 
 
-app.listen(port, function(){
+app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
+
+module.exports = app;
