@@ -14,29 +14,27 @@ client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
 });
 
 
-CREATE TABLE languages (
-id                      int PRIMARY KEY,
-english_interface       bool,
-english_full_audio      bool,
-english_subtitles       bool,
-spanish_interface       bool,
-spanish_full_audio      bool,
-spanish_subtitles       bool,
-french_interface        bool,
-french_full_audio       bool,
-french_subtitles        bool,
-navajo_interface        bool,
-navajo_full_audio       bool,
-navajo_subtitles        bool,
-mandarin_interface      bool,
-mandarin_full_audio     bool,
-mandarin_subtitles      bool
-);
+// CREATE TABLE languages (
+// id                      int PRIMARY KEY,
+// english_interface       bool,
+// english_full_audio      bool,
+// english_subtitles       bool,
+// spanish_interface       bool,
+// spanish_full_audio      bool,
+// spanish_subtitles       bool,
+// french_interface        bool,
+// french_full_audio       bool,
+// french_subtitles        bool,
+// navajo_interface        bool,
+// navajo_full_audio       bool,
+// navajo_subtitles        bool,
+// mandarin_interface      bool,
+// mandarin_full_audio     bool,
+// mandarin_subtitles      bool
+// );
 
-//show tables in current schema
-//  \dt
-\copy languages FROM
-'/Users/gloria/HRR38/SDC/sdc-productDetails/allTheData.csv' WITH DELIMITER ',' CSV
+// \copy languages FROM
+// '/Users/gloria/HRR38/SDC/sdc-productDetails/allTheData.csv' WITH DELIMITER ',' CSV
 
 //given id, return supported languages
 const find = (id, callback) => {
