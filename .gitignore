@@ -1,2 +1,4 @@
 node_modules
 public/bundle.js
+./csv/
+'./csv/allTheData.csv'

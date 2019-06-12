@@ -30,7 +30,7 @@ const seed = () => {
       tenThousand++;
     }
     let test = dataString;
-    fs.appendFileSync('./allTheData.csv', test);
+    fs.appendFileSync('./csv/allTheData.csv', test);
   // while (count < 100) {
   //   let data = '';
   //   let tenThousand = 0;

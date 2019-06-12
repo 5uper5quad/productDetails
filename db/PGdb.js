@@ -14,7 +14,7 @@ client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
 });
 
 
-// CREATE TABLE languages (
+// CREATE TABLE languagefeatures (
 // id                      int PRIMARY KEY,
 // english_interface       bool,
 // english_full_audio      bool,
@@ -38,21 +38,22 @@ client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
 
 //given id, return supported languages
 const find = (id, callback) => {
+//client.query
 };
 
 //edit list of supported languages
 const update = (language, callback) => {
-
+//client.query
 };
 
 //add new list of supported languages
 const insert = (language, callback) => {
-
+//client.query
 };
 
 //delete supported languages at id
-const remove = () => {
-
+const remove = (id, callback) => {
+//client.query
 };
 
 
