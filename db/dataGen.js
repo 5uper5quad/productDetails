@@ -4,10 +4,10 @@ const fs = require('fs');
 
 const seed = () => {
   let count = 0;
+  var start = Date.now(); //start timer
   while (count < 10000000) {
     let dataString = '';
     let tenThousand = 0;
-    var start = Date.now(); //start timer
     while (tenThousand < 10000) {
       dataString += count + ',';
       dataString += faker.random.boolean() + ',';
@@ -30,7 +30,7 @@ const seed = () => {
       tenThousand++;
     }
     let test = dataString;
-    fs.appendFileSync('./allTheData.csv', test);
+    fs.appendFileSync('./csv/allTheData.csv', test);
   // while (count < 100) {
   //   let data = '';
   //   let tenThousand = 0;

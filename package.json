@@ -6,7 +6,7 @@
   "scripts": {
     "express-start": "nodemon ./server/index.js",
     "webpack": "webpack --watch",
-    "seed": "node ./db/PGseeder.js",
+    "seed": "node ./db/dataGen.js",
     "test": "jest --verbose"
   },
   "author": "azucena martinez",
