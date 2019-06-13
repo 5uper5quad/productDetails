@@ -4,10 +4,10 @@ const fs = require('fs');
 
 const seed = () => {
   let count = 0;
+  var start = Date.now(); //start timer
   while (count < 10000000) {
     let dataString = '';
     let tenThousand = 0;
-    var start = Date.now(); //start timer
     while (tenThousand < 10000) {
       dataString += count + ',';
       dataString += faker.random.boolean() + ',';

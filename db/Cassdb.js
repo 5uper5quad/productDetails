@@ -22,19 +22,29 @@ const client = new cassandra.Client({ contactPoints: ['127.0.0.1'], keyspace: 'l
 // );
 
 const find = (id, callback) => {
-//client.execute
+  const query = `SELECT * FROM languages WHERE id =${id}`;
+  client.execute(query, (err, result) => {
+    if (err) callback(err, null);
+    else callback(null, result);
+  })
 };
 
 const update = (language, callback) => {
-//client.execute
+  //need languageParams
+  //client.execute - insert into
 };
 
 const insert = (language, callback) => {
+//languageParams
 //client.execute
 };
 
 const remove = (id, callback) => {
-//client.execute
+  const query = `DELETE FROM languagefeatures.languaged WHERE id =${id} IF EXISTS`;
+  client.execute (query, (err, result) => {
+    if (err) callback(err, null);
+    else callback (null, result);
+  });
 };
 
 
