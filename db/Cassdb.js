@@ -28,6 +28,25 @@ client.connect((err, connection) => {
 //   mandarin_subtitles      boolean
 // );
 
+//read languages and print to console
+// const findFirstEntry = (callback) => {
+//   client.execute('SELECT * FROM languages WHERE id=0', (err, result) => {
+//     if (!err) {
+//       if (result.rows.length > 0) {
+//         console.log('yay i made it and found id 0: ' + JSON.stringify(result.rows));
+//       } else {
+//         console.log('no results :(');
+//       }
+//     }
+//     //run next function in series
+//     // callback(err, null);
+//   });
+// }
+
+// findFirstEntry();
+//process.exit();
+
+
 const find = (id, callback) => {
   const query = `SELECT * FROM languages WHERE id =${id}`;
   client.execute(query, (err, result) => {

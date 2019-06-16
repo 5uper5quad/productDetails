@@ -5,6 +5,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const os = require('os');
+
 
 const app = express(); 
 const port = 3009;
@@ -13,6 +15,9 @@ const port = 3009;
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
+
+cpuCount = os.cpus().length;
+console.log(cpuCount);
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/:id', express.static('public'));
@@ -26,7 +31,7 @@ app.use(cors());
 app.get('/languageFeatures/:id', (req, res) => {
   db.find(req.params.id, (err, data) => {
     if(err) res.send(err);
-    res.send(data);
+    res.send(data.rows); //<--data.rows eventually
   });
 });
 
@@ -57,6 +62,11 @@ app.delete('/languageFeatures/:id', (req, res) => {
 });
 
 
+<<<<<<< HEAD
 
+=======
+//loadtest http://localhost:3009/ t 20 c 10 rps 500
+//loadtest -c 10 --rps 100 http://localhost:3009/languageFeatures
+>>>>>>> 41d57fa4ce27107e958611a73d157803911a9b63
 
 module.exports = app;
