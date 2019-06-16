@@ -20841,7 +20841,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default.a.get("http://localhost:3009/products/1", function (data) {
+      __WEBPACK_IMPORTED_MODULE_2_jquery___default.a.get("http://localhost:3009/languageFeatures/1", function (data) {
         var languageArray = [];
         var featuresArray = [];
 
