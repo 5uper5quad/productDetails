@@ -15,11 +15,16 @@
     "node": ">=6.13.0"
   },
   "dependencies": {
+    "async": "^3.0.1",
+    "cassandra-driver": "^4.1.0",
+    "cluster": "^0.7.7",
     "cors": "^2.8.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "loadtest": "^3.0.7",
     "mongodb": "^3.2.6",
     "mongoose": "^5.5.11",
+    "newrelic": "^5.10.0",
     "pg": "^7.11.0",
     "postgresql": "0.0.1",
     "react": "^15.6.2",

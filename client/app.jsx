@@ -15,7 +15,7 @@ class App extends React.Component {
 
   componentDidMount() {
     
-    $.get(`http://localhost:3009/products/1`, (data) => {
+    $.get(`http://localhost:3009/languageFeatures/1`, (data) => {
       var languageArray = []
       var featuresArray = []
       for(let key in data){
