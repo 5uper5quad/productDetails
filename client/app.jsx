@@ -20,10 +20,10 @@ class App extends React.Component {
       var featuresArray = []
       for(let key in data){
         languageArray.push(` ${key}  `)
-        console.log("data[key]", data[key])
+        // console.log("data[key]", data[key])
       for(let innerKey in data[key]){
         featuresArray.push(`  ${innerKey}     `)
-        console.log("innerKey",innerKey)
+        // console.log("innerKey",innerKey)
       }
       }
 
