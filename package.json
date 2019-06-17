@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "express-start": "nodemon ./server/index.js",
+    "start": "nodemon ./server/index.js",
     "webpack": "webpack --watch",
     "seed": "node ./db/dataGen.js",
     "test": "jest --verbose"

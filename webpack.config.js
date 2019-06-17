@@ -8,7 +8,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module : {
-     loaders : [
+    loaders : [
         {
           test : /\.jsx?/,
           include : __dirname,
