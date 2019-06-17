@@ -30,7 +30,7 @@ app.use(cors());
 app.get('/languageFeatures/:id', (req, res) => {
   db.find(req.params.id, (err, data) => {
     if(err) res.send(err);
-    else res.send(data.rows); //<--data.rows eventually
+    else res.send(data.rows);
   });
 });
 
