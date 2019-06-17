@@ -3,3 +3,4 @@ public/bundle.js
 csv/allTheData.csv
 csv
 newrelic.js
+newrelic_agent.log
