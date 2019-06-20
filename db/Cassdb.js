@@ -10,23 +10,18 @@ client.connect((err, connection) => {
 });
 
 // CREATE TABLE languagefeatures.languages (
-//   id                      int PRIMARY KEY,
-//   english_interface       boolean,
-//   english_full_audio      boolean,
-//   english_subtitles       boolean,
-//   spanish_interface       boolean,
-//   spanish_full_audio      boolean,
-//   spanish_subtitles       boolean,
-//   french_interface        boolean,
-//   french_full_audio       boolean,
-//   french_subtitles        boolean,
-//   navajo_interface        boolean,
-//   navajo_full_audio       boolean,
-//   navajo_subtitles        boolean,
-//   mandarin_interface      boolean,
-//   mandarin_full_audio     boolean,
-//   mandarin_subtitles      boolean
+//  id        int PRIMARY KEY,
+//  name      text,
+//  english   map<text, boolean>,
+//  spanish   map<text, boolean>,
+//  french    map<text, boolean>,
+//  navajo    map<text, boolean>,
+//  mandarin  map<text, boolean>
 // );
+
+//  {'full_audio' : boolean, 'interface' : boolean, 'subtitles' : boolean}
+
+
 
 //read languages and print to console
 // const findFirstEntry = (callback) => {
@@ -46,6 +41,19 @@ client.connect((err, connection) => {
 // findFirstEntry();
 //process.exit();
 
+//get nested items in map 
+const mapToItem = (items) => {
+  if (Array.isArray(items)) {
+    let list = '{';
+    items.forEach((item) => {
+      //rebuild back into item getting strings and commas
+      list += `'${item}',`;
+    });
+    //get rid of comma
+    return `${list.slice(0, -1)}}`;
+  }
+  return `{${items}}`;
+};
 
 const find = (id, callback) => {
   const query = `SELECT * FROM languages WHERE id =${id}`;

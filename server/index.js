@@ -1,67 +1,80 @@
 require('newrelic');
-// const db = require('../db/PGdb.js');
-const db = require('../db/Cassdb.js');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cors = require('cors');
 const os = require('os');
+const cluster = require('cluster');
+
+if (cluster.isMaster) {
+  //master process
+  const n_cpus = os.cpus().length;
+  console.log(`forking ${n_cpus} CPUs`);
+  for (let i = 0; i < n_cpus; i++) {
+    cluster.fork();
+  }
+} else {
 
 
-const app = express(); 
-const port = process.env.PORT || 3009;
-
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
-});
-
-cpuCount = os.cpus().length;
-console.log(cpuCount);
-
-app.use(express.static(path.join(__dirname, '../public')));
-app.use('/:id', express.static('public'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors());
+//worker process
+//=====================================
+  // const db = require('../db/PGdb.js');
+  const db = require('../db/Cassdb.js');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const path = require('path');
+  const cors = require('cors');
 
 
-//get at id
-app.get('/languageFeatures/:id', (req, res) => {
-  db.find(req.params.id, (err, data) => {
-    if(err) res.send(err);
-    else res.send(data.rows);
+  const app = express(); 
+  const port = process.env.PORT || 3009;
+
+  app.listen(port, () => {
+    console.log(`listening on port ${port}`);
   });
-});
 
-//post at id
-app.post('/languageFeatures/:id', (req, res) => {
-  const product = req.body;
-  db.add(product, (err, data) => {
-    if(err) res.send(err);
-    else res.send(data);
-  });
-});
+  app.use(express.static(path.join(__dirname, '../public')));
+  app.use('/:id', express.static('public'));
 
-//put at id
-app.put('/languageFeatures/:id', (req, res) => {
-  const product = req.body;
-  db.update(product, (err, data) => {
-    if (err) res.send(err);
-    else res.send(data);
-  });
-});
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(cors());
 
-//delete at id
-app.delete('/languageFeatures/:id', (req, res) => {
-  db.remove(req.params.id, (err, data) => {
-    if(err) res.send(err);
-    else res.send(data);
+
+  //get at id
+  app.get('/languageFeatures/:id', (req, res) => {
+    db.find(req.params.id, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data.rows);
+    });
   });
-});
+
+  //post at id
+  app.post('/languageFeatures/:id', (req, res) => {
+    const product = req.body;
+    db.add(product, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data);
+    });
+  });
+
+  //put at id
+  app.put('/languageFeatures/:id', (req, res) => {
+    const product = req.body;
+    db.update(product, (err, data) => {
+      if (err) res.send(err);
+      else res.send(data);
+    });
+  });
+
+  //delete at id
+  app.delete('/languageFeatures/:id', (req, res) => {
+    db.remove(req.params.id, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data);
+    });
+  });
 
 
 //loadtest http://localhost:3009/ t 20 c 10 rps 500
 //loadtest -c 10 --rps 100 http://localhost:3009/languageFeatures
 
 module.exports = app;
+
+}
