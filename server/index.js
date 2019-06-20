@@ -1,4 +1,3 @@
-require('newrelic');
 const os = require('os');
 const cluster = require('cluster');
 
