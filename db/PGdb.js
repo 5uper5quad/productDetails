@@ -7,11 +7,11 @@ client.connect((err, connection) => {
   else console.log('sdcpostgres successfully connected!');
 });
 
-client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
-  console.log(err ? err.stack : res.rows[0].message) // Hello World!
-  console.log(res.rows.length) // 1
-  client.end()
-});
+// client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
+//   console.log(err ? err.stack : res.rows[0].message) // Hello World!
+//   console.log(res.rows.length) // 1
+//   client.end()
+// });
 
 
 // CREATE TABLE languagefeatures (

@@ -1,65 +1,76 @@
-const db = require('../db/PGdb.js');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cors = require('cors');
+require('newrelic');
+const os = require('os');
+const cluster = require('cluster');
 
-const app = express(); 
-const port = process.eng.PORT || 3009;
-
-app.use(express.static(path.join(__dirname, '../public')));
-app.use('/:id', express.static('public'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors());
+if (cluster.isMaster) {
+  //master process
+  const n_cpus = os.cpus().length;
+  console.log(`forking ${n_cpus} CPUs`);
+  for (let i = 0; i < n_cpus; i++) {
+    cluster.fork();
+  }
+} else {
 
 
-//getall
-app.get('/languageFeatures', (req,res) => {
-  db.find({ } ,(err, data) => {
-    if(err) res.send(err);
-    else res.send(data);
-  })
-});
+//worker process
+//=====================================
+  // const db = require('../db/PGdb.js');
+  const db = require('../db/Cassdb.js');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const path = require('path');
+  const cors = require('cors');
 
-//get at id
-app.get('/languageFeatures/:id', (req, res) => {
-  db.find(req.params.id, (err, data) => {
-    if(err) res.send(err);
-    res.send(data[0]); //<--data.rows eventually for postgres
+
+  const app = express(); 
+  const port = process.env.PORT || 3009;
+
+  app.listen(port, () => {
+    console.log(`listening on port ${port}`);
   });
-});
 
-//post at id
-app.post('/languageFeatures/:id', (req, res) => {
-  const product = req.body;
-  db.add(product, (err, data) => {
-    if(err) res.send(err);
-    else res.send(data);
+  app.use(express.static(path.join(__dirname, '../public')));
+  app.use('/:id', express.static('public'));
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(cors());
+
+
+  //get at id
+  app.get('/languageFeatures/:id', (req, res) => {
+    db.find(req.params.id, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data.rows);
+    });
   });
-});
 
-//put at id
-app.put('/languageFeatures/:id', (req, res) => {
-  const product = req.body;
-  db.update(product, (err, data) => {
-    if (err) res.send(err);
-    else res.send(data);
+  //post at id
+  app.post('/languageFeatures/:id', (req, res) => {
+    const game = req.body;
+    db.add(game, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data);
+    });
   });
-});
 
-//delete at id
-app.delete('/languageFeatures/:id', (req, res) => {
-  db.remove(req.params.id, (err, data) => {
-    if(err) res.send(err);
-    else res.send(data);
+  //put at id
+  app.put('/languageFeatures/:id', (req, res) => {
+    const game = req.body;
+    db.update(game, (err, data) => {
+      if (err) res.send(err);
+      else res.send(data);
+    });
   });
-});
 
-
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
-});
+  //delete at id
+  app.delete('/languageFeatures/:id', (req, res) => {
+    db.remove(req.params.id, (err, data) => {
+      if(err) res.send(err);
+      else res.send(data);
+    });
+  });
 
 module.exports = app;
+
+}

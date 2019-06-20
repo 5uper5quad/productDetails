@@ -1,6 +1,4 @@
 node_modules
-public/bundle.js
-csv/allTheData.csv
-csv
+npm-debug.log
 newrelic.js
 newrelic_agent.log
