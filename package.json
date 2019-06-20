@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server/index.js",
+    "start":  "if [$NODE_ENV == 'production']; then node ./server/index.js; else nodemon ./server/index.js; fi",
     "webpack": "webpack --watch",
     "seed": "node ./db/dataGen.js",
     "test": "jest --verbose"

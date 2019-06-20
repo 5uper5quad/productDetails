@@ -47,8 +47,8 @@ if (cluster.isMaster) {
 
   //post at id
   app.post('/languageFeatures/:id', (req, res) => {
-    const product = req.body;
-    db.add(product, (err, data) => {
+    const game = req.body;
+    db.add(game, (err, data) => {
       if(err) res.send(err);
       else res.send(data);
     });
@@ -56,8 +56,8 @@ if (cluster.isMaster) {
 
   //put at id
   app.put('/languageFeatures/:id', (req, res) => {
-    const product = req.body;
-    db.update(product, (err, data) => {
+    const game = req.body;
+    db.update(game, (err, data) => {
       if (err) res.send(err);
       else res.send(data);
     });
@@ -70,10 +70,6 @@ if (cluster.isMaster) {
       else res.send(data);
     });
   });
-
-
-//loadtest http://localhost:3009/ t 20 c 10 rps 500
-//loadtest -c 10 --rps 100 http://localhost:3009/languageFeatures
 
 module.exports = app;
 
