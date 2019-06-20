@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":  "if [$NODE_ENV == 'production']; then node ./server/index.js; else nodemon ./server/index.js; fi",
+    "start": "if [$NODE_ENV == 'production']; then node app.js; else nodemon app.js; fi",
     "webpack": "webpack --watch",
     "seed": "node ./db/dataGen.js",
     "test": "jest --verbose"
@@ -24,7 +24,6 @@
     "loadtest": "^3.0.7",
     "mongodb": "^3.2.6",
     "mongoose": "^5.5.11",
-    "newrelic": "^5.10.0",
     "pg": "^7.11.0",
     "postgresql": "0.0.1",
     "react": "^15.6.2",
