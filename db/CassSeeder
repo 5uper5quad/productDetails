@@ -18,3 +18,6 @@ map<text, boolean> :
 COPY languagefeatures.games FROM '/Users/gloria/HRR38/SDC/sdc-productDetails/csv/allTheData.csv' WITH DELIMITER = '|';
 
 COPY languagefeatures.games (id, game_name, english, spanish, french, navajo, mandarin) FROM '/Users/gloria/HRR38/SDC/sdc-productDetails/csv/allTheData.csv' WITH DELIMITER = '|' AND HEADER=TRUE;
+
+COPY languagefeatures.games (id, game_name, english, spanish, french, navajo, mandarin) FROM '/home/ec2-user/sdc-productDetails/csv/allTheData.csv' WITH DELIMITER = '|' AND HEADER=TRUE;
+

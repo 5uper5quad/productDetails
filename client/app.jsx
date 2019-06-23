@@ -14,22 +14,40 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    
-    $.get(`http://localhost:3009/languageFeatures/1`, (data) => {
-      var languageArray = []
-      var featuresArray = []
+    const localhostaddress = location.hostname;
+    $.get(`http://${localhostaddress}:3009/languageFeatures/1`, (data) => {
+
+      var languages = [];
+      var features = [];
+
       for(let key in data){
-        languageArray.push(` ${key}  `)
-        // console.log("data[key]", data[key])
-      for(let innerKey in data[key]){
-        featuresArray.push(`  ${innerKey}     `)
-        // console.log("innerKey",innerKey)
-      }
+        console.log('incoming object is ' + data[key]);
+
+        let object = data[key];
+        //key without id or name
+        delete object.id;
+        delete object.game_name;
+        console.log(object);
+
+        for(let innerKey in object){
+          //all languages
+          languages.push(` ${innerKey} `)
+
+          for(key in object[innerKey]) {
+            //all features
+            let featureObject = object[innerKey];
+            let featureArray = Object.keys(featureObject);
+            for (var i = 0; i < featureArray.length; i++) {
+              let featureStr = featureArray[i].slice(1, -1);
+              features.push(`  ${featureStr}     `)
+            }
+          }
+        }
       }
 
     this.setState({
-      languages : languageArray.splice(0,5),
-      features: featuresArray.splice(0,3)
+      languages : languages,
+      features: features
     })
 
   }) 
@@ -62,7 +80,7 @@ class App extends React.Component {
         <div style ={innerDivStyle}>
           <b>Language :</b> 
             {this.state.languages[0]}  
-          Features :
+          <b>Features :</b>
             {this.state.features[0]}<span>&#10003;</span>
             {this.state.features[1]}
             {this.state.features[2]}<span>&#10003;</span>
@@ -70,7 +88,7 @@ class App extends React.Component {
           <div style ={innerDivStyle}>
           <b>Language :</b> 
             {this.state.languages[1]}  
-          Features :
+          <b>Features :</b>
             {this.state.features[0]}<span>&#10003;</span>
             {this.state.features[1]}<span>&#10003;</span>
             {this.state.features[2]}<span>&#10003;</span>
@@ -78,7 +96,7 @@ class App extends React.Component {
           <div style ={innerDivStyle}>
           <b>Language :</b> 
           {this.state.languages[2]}  
-          Features :
+          <b>Features :</b>
             {this.state.features[0]}
             {this.state.features[1]}<span>&#10003;</span>
             {this.state.features[2]}<span>&#10003;</span>
@@ -86,7 +104,7 @@ class App extends React.Component {
           <div style ={innerDivStyle}>
           <b>Language :</b> 
           {this.state.languages[3]}  
-          Features :
+          <b>Features :</b>
             {this.state.features[0]}<span>&#10003;</span>
             {this.state.features[1]}
             {this.state.features[2]}<span>&#10003;</span>
@@ -94,19 +112,12 @@ class App extends React.Component {
           <div style ={innerDivStyle}>
           <b>Language :</b> 
           {this.state.languages[4]}  
-          Features :
+          <b>Features :</b>
             {this.state.features[0]}<span>&#10003;</span>
             {this.state.features[1]}
             {this.state.features[2]}<span>&#10003;</span>
           </div>
-          <div style ={innerDivStyle}>
-          <b>Language :</b> 
-          {this.state.languages[5]}  
-          Features :
-            {this.state.features[0]}
-            {this.state.features[1]}<span>&#10003;</span>
-            {this.state.features[2]}<span>&#10003;</span>
-          </div>
+
           <h4>Payment Options : <FaAmazonPay size ={60}/>  and  <FaApplePay size ={60}/></h4>
       </div>
   )
