@@ -10,14 +10,10 @@
 ## Related Projects
 Related Projects: 
 
-        https://github.com/hair-punk/fec3-azu-service
-
-
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/5dc-5uper5quad/5DC-5arki5-5ervice
+  - https://github.com/5dc-5uper5quad/5DC-Ja5mine-5ervice
+  - https://github.com/5dc-5uper5quad/Cam5-5tuff
+  - https://github.com/5dc-5uper5quad/5DC-Proxy
 
 ## Table of Contents
 
